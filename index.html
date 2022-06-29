@@ -11,7 +11,7 @@
 <body id="content">
     <div class="sidebar">
         <!-- Add Library logo picture -->
-        <p class="logo"><img src="./images/library-outline.svg" alt="library"> Library</p>
+        <p class="logo"><img src="./images/library-outline.SVG" alt="library"> Library</p>
 
         <form action="#">
 
@@ -23,11 +23,15 @@
             </div>
             <div class="input-container">
                 <input type="text" name="author" id="author" placeholder="Who is the author of the book?">
-                <p class="validation-text author">Please list the author</p>
+                <div class="validate-container">
+                    <p class="validation-text author">Please list the author</p>
+                </div>
             </div>
             <div class="input-container">
-                <input type="number" name="number" id="number" placeholder="Enter the number of pages">
-                <p class="validation-text pages">Please enter a number greater than 0</p>
+                <input type="number" name="number" id="pages" placeholder="Enter the number of pages">
+                <div class="validate-container">
+                    <p class="validation-text pages">Please enter a number greater than 0</p>
+                </div>
             </div>
 
             <label for="check" id="check">
@@ -42,7 +46,7 @@
 
     <header class="container">
 
-        <p class="books"><img src="./images/book-open-page-variant.svg" alt="book"> Books</p>
+        <p class="books"><img src="./images/book-open-page-variant.SVG" alt="book"> Books</p>
 
     </header>
 
