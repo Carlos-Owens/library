@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Library</title>
+</head>
+<body id="content">
+    <div class="sidebar">
+        <!-- Add Library logo picture -->
+        <p class="logo"><img src="./images/library-outline.svg" alt="library"> Library</p>
+
+        <form action="#">
+
+            <div class="input-container">
+                <input type="text" name="title" id="title" placeholder="What is the title of the book?">
+                <div class="validate-container">
+                    <p class="validation-text title">Please enter a title</p>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" name="author" id="author" placeholder="Who is the author of the book?">
+                <p class="validation-text author">Please list the author</p>
+            </div>
+            <div class="input-container">
+                <input type="number" name="number" id="number" placeholder="Enter the number of pages">
+                <p class="validation-text pages">Please enter a number greater than 0</p>
+            </div>
+
+            <label for="check" id="check">
+                <input type="checkbox" name="check" id="check">
+                <p class="book-read">I have read this book</p>
+            </label>
+            <label for="button">
+                <input type="button" name="add-book" id="add-book" value="Add a new book">
+            </label>
+        </form>
+    </div>
+
+    <header class="container">
+
+        <p class="books"><img src="./images/book-open-page-variant.svg" alt="book"> Books</p>
+
+    </header>
+
+    <main class="container">
+
+        <div class="library-info">
+            <p class="info">BOOKS READ: 0</p>
+            <p class="info">BOOKS UNREAD: 0</p>
+            <p class="info">TOTAL BOOKS: 0</p>
+            <button id="delete" type="button">Delete All</button>
+        </div>
+
+        <div class="card-display">
+            
+        </div>
+    </main>
+</body>
+</html>

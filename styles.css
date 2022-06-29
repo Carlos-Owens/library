@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* box-sizing: border-box; */
+}
+
+body {
+    display: grid;
+    grid-template: 1fr 3fr/ 1fr 3fr;
+    height: 100vh;
+}
+
+.sidebar {
+    grid-row: 1/3;
+    padding: 1.5rem;
+    background-color: #7dd3fc
+}
+.sidebar img {
+    height: 5vh;
+}
+
+.sidebar > .logo {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    align-items: center;
+}
+
+.sidebar > form > label#check{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+form > .input-container{
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+}
+
+.input-container > input {
+    padding: 8px 10px;
+    width: 20vw;
+    font-size: 1.1rem;
+    border-radius: 7px;
+    background-color: #cbd5e1;
+    border: none;
+    color: #000;
+    outline: none;
+}
+
+label > input#add-book {
+    padding: 5px 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: #cbd5e1;
+}
+
+header {
+    grid-column: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 25px;
+    background-color: #cbd5e1;
+}
+
+header > p {
+    font-size: 2.5rem;
+    display: flex;
+    font-weight: bold;
+}
+
+header > p > img {
+    height: 5vh;
+}
+
+main {
+    padding: 15px;
+}
+
+main > .library-info {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+main > .library-info > #delete {
+    padding:10px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #ef4444;
+    color: #fff;
+}
+
+.library-info > button#delete:active {
+    background-color: #a31e1e;
+}
+
+main > .card-display {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    background-color: gray;
+}
+
+.card-display p {
+    display: flex;
+    align-items: flex-end;
+}
