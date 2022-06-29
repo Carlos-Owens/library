@@ -40,7 +40,7 @@ body {
 }
 
 form > .input-container{
-    margin-bottom: 18px;
+    margin-bottom: 35px;
     font-size: 1.1rem;
 }
 
@@ -61,7 +61,10 @@ label > input#add-book {
     border-radius: 5px;
     background-color: #cbd5e1;
 }
-
+.validate-container .validation-text {
+    color: #ef4444;
+    display: none;
+}
 header {
     grid-column: 2/3;
     display: flex;
