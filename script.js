@@ -59,7 +59,7 @@ function displayBooks() {
 
         card.classList.add("card");
         btnContainer.classList.add("btn-container");
-        readBtn.classList.add("btn");
+        readBtn.classList.add("read-btn");
         deleteBtn.classList.add("delete-btn");
 
         title.textContent = `"${book.title}"`;
@@ -121,16 +121,36 @@ const validateForm = (e) => {
     }
 }
 
+function deleteAll() {
+    myLibrary = [];
+}
+
 const clicks = () => {
     document.addEventListener("click", e => {
         const { target } = e;
+        const tg = target.parentNode.parentNode.columnIndex;
         if(target.id === "add-book") {
             validateForm(e);
+        }
+        else if(target.id === "delete") {
+            deleteAll();
+        }
+        else if(target.classList.contains("read-btn")) {
+            target.classList.remove("read-btn");
+            target.classList.add("unread-btn");
+            target.textContent = "Not Read";
+            myLibrary[tg].status = false;
+        }
+        else if(target.classList.contains("unread-btn")) {
+            target.classList.remove("unread-btn");
+            target.classList.add("read-btn");
+            target.textContent = "Read";
+            myLibrary[tg].status = true;
         }
         // else if(target.classList.contains("delete-btn")) {
         //     myLibrary.splice()
         // }
-    })
+        displayBooks()
+    });
 }
-
 clicks();
