@@ -102,6 +102,7 @@ main > .library-info {
     margin-bottom: 15px;
 }
 
+
 main > .library-info > #delete {
     padding:10px;
     font-size: 1.3rem;
@@ -120,5 +121,20 @@ main > .card-display {
     grid-template-columns: repeat(4, 1fr);
     min-width: 70vw;
     gap: 20px;
+}
+
+.card-display > .card {
+    display: flex;
+    height: 20vh;
+    gap: 15px;
     background-color: #cbd5e1;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0px 15px 0px;
+    justify-content: center;
+}
+
+.card > p {
+    font-size: 1.2rem;
 }

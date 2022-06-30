@@ -1,9 +1,7 @@
 let myLibrary = [];
 
-
-
 // Book constructor
-function Books(title, author, pages, status = false) {
+function Books(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -17,24 +15,39 @@ function addBookToLibrary(title, author, pages, status) {
     displayBooks();
 }
 
-function getInput() {
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
-    const status = document.getElementById("checkbox").value;
+// Show library info
+function libraryInfo() {
+    const readInfo = document.querySelector("#read-info");
+    const unreadInfo = document.querySelector("#unread-info");
+    const totalInfo = document.querySelector("#total-info");
 
-    if((title === "") || (author === "") || (pages === "") || (status === "")) {
-       return;
-    } 
-    
-    addBookToLibrary(title, author, pages, status); 
+    let readCount = 0;
+    let unreadCount = 0;
+    readInfo.textContent = 0;
+    unreadInfo.textContent = 0;
+    myLibrary.forEach((info) => {
+        if(info.status === true) {
+            readCount++;
+            readInfo.textContent = readCount;
+        } else {
+            unreadCount++;
+            unreadInfo.textContent = unreadCount;
+        }
+    })
+    totalInfo.textContent = myLibrary.length;
 }
-
-// const 
 
 // Show book cards
 function displayBooks() {
+    libraryInfo();
     const cardDisplay = document.querySelector(".card-display");
+
+    // Remove extra card
+    const removeDivs = document.querySelectorAll(".card") 
+    removeDivs.forEach((divs) => {
+        divs.remove();
+    })
+
     myLibrary.forEach((book) => {
         const card = document.createElement("div");
         const title = document.createElement("p")
@@ -47,7 +60,7 @@ function displayBooks() {
         card.classList.add("card");
         btnContainer.classList.add("btn-container");
         readBtn.classList.add("btn");
-        deleteBtn.classList.add("btn");
+        deleteBtn.classList.add("delete-btn");
 
         title.textContent = `"${book.title}"`;
         author.textContent = `${book.author}`;
@@ -62,7 +75,6 @@ function displayBooks() {
             readBtn.classList.add("btn-red");
         }
 
-
         cardDisplay.appendChild(card);
         card.appendChild(title);
         card.appendChild(author);
@@ -70,8 +82,6 @@ function displayBooks() {
         card.appendChild(btnContainer);
         btnContainer.appendChild(readBtn);
         btnContainer.appendChild(deleteBtn);
-
-
     })
 }
 
@@ -85,7 +95,7 @@ const validateForm = (e) => {
     const authorErr = document.querySelector(".author");
     const pagesInput = document.querySelector("#pages");
     const pagesErr = document.querySelector(".pages");
-    const check = document.querySelector("input[name='check']")
+    const checkbox = document.querySelector("input[name='check']")
     if(titleInput.value === "") {
         titleErr.style.display = "block";
     } else {
@@ -101,7 +111,12 @@ const validateForm = (e) => {
     } else {
         pagesErr.style.display = "none"
     }
-    if(titleInput.value !== "" && authorInput.value !== "" && pagesInput.value !== "" && pagesInput.value > 0) {
+    if(titleInput.value !== "" && authorInput.value !== "" && pagesInput.value !== "" && pagesInput.value > 0) { 
+        if(checkbox.checked) {
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, true)
+        } else {
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, false)
+        }
         form.reset();
     }
 }
@@ -112,6 +127,9 @@ const clicks = () => {
         if(target.id === "add-book") {
             validateForm(e);
         }
+        // else if(target.classList.contains("delete-btn")) {
+        //     myLibrary.splice()
+        // }
     })
 }
 
