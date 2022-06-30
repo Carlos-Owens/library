@@ -42,12 +42,13 @@ function displayBooks() {
     libraryInfo();
     const cardDisplay = document.querySelector(".card-display");
 
-    // Remove extra card
+    // Remove extra displayed card
     const removeDivs = document.querySelectorAll(".card") 
     removeDivs.forEach((divs) => {
         divs.remove();
     })
-
+    
+    let index = 0;
     myLibrary.forEach((book) => {
         const card = document.createElement("div");
         const title = document.createElement("p")
@@ -61,6 +62,17 @@ function displayBooks() {
         btnContainer.classList.add("btn-container");
         readBtn.classList.add("read-btn");
         deleteBtn.classList.add("delete-btn");
+
+        // Remove card from array
+        deleteBtn.dataset.linkedArray = index;
+        index++;
+        deleteBtn.addEventListener("click", removeCard);
+        function removeCard() {
+            let retrievedBook = deleteBtn.dataset.linkedArray;
+            myLibrary.splice(parseInt(retrievedBook), 1);
+            card.remove();
+            displayBooks();
+        }
 
         title.textContent = `"${book.title}"`;
         author.textContent = `${book.author}`;
@@ -128,7 +140,7 @@ function deleteAll() {
 const clicks = () => {
     document.addEventListener("click", e => {
         const { target } = e;
-        const tg = target.parentNode.parentNode.columnIndex;
+        const tg = target.parentElement.parentElement.parentElement.index;
         if(target.id === "add-book") {
             validateForm(e);
         }
@@ -136,20 +148,18 @@ const clicks = () => {
             deleteAll();
         }
         else if(target.classList.contains("read-btn")) {
+            myLibrary.forEach((item) => {
+                item.status = false;
+            })
             target.classList.remove("read-btn");
             target.classList.add("unread-btn");
             target.textContent = "Not Read";
-            myLibrary[tg].status = false;
         }
         else if(target.classList.contains("unread-btn")) {
             target.classList.remove("unread-btn");
             target.classList.add("read-btn");
             target.textContent = "Read";
-            myLibrary[tg].status = true;
         }
-        // else if(target.classList.contains("delete-btn")) {
-        //     myLibrary.splice()
-        // }
         displayBooks()
     });
 }
