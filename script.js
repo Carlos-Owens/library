@@ -79,12 +79,12 @@ function displayBooks() {
         pages.textContent = `${book.pages} pages`;
         deleteBtn.textContent = "Remove";
 
-        if(book.status) {
-            readBtn.textContent = "Read"
+        if(book.status === true) {
             readBtn.classList.add("btn-green");
+            readBtn.textContent = "Read"
         } else {
-            readBtn.textContent = "Not Read";
             readBtn.classList.add("btn-red");
+            readBtn.textContent = "Not Read";
         }
 
         cardDisplay.appendChild(card);
@@ -140,25 +140,28 @@ function deleteAll() {
 const clicks = () => {
     document.addEventListener("click", e => {
         const { target } = e;
-        const tg = target.parentElement.parentElement.parentElement.index;
+        // const tr = target.parentNode.parentNode.index;
         if(target.id === "add-book") {
             validateForm(e);
         }
         else if(target.id === "delete") {
             deleteAll();
         }
-        else if(target.classList.contains("read-btn")) {
+        else if(target.classList.contains("btn-green")) {
+            target.classList.remove("btn-green");
+            target.classList.add("btn-red");
+            // myLibrary[tr].status = false;
             myLibrary.forEach((item) => {
                 item.status = false;
-            })
-            target.classList.remove("read-btn");
-            target.classList.add("unread-btn");
-            target.textContent = "Not Read";
+            });
         }
-        else if(target.classList.contains("unread-btn")) {
-            target.classList.remove("unread-btn");
-            target.classList.add("read-btn");
-            target.textContent = "Read";
+        else if(target.classList.contains("btn-red")) {
+            target.classList.remove("btn-red");
+            target.classList.add("btn-green");
+            // myLibrary[tr].status = true;
+            myLibrary.forEach(item => {
+                item.status = true;
+            })
         }
         displayBooks()
     });
