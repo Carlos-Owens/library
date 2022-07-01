@@ -127,7 +127,7 @@ main > .card-display {
 
 .card-display > .card {
     display: flex;
-    height: 20vh;
+    min-height: 20vh;
     gap: 15px;
     background-color: #cbd5e1;
     border-radius: 10px;
