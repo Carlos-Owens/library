@@ -60,10 +60,11 @@ form > .input-container{
 }
 
 label > input#add-book {
-    padding: 5px 7px;
+    padding: 11px 12px;
     border: none;
     border-radius: 5px;
     background-color: #cbd5e1;
+    font-size: 1.01rem;
 }
 .validate-container .validation-text {
     color: #ef4444;
