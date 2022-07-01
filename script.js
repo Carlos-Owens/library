@@ -48,8 +48,7 @@ function displayBooks() {
         divs.remove();
     })
     
-    let index = 0;
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, index) => {
         const card = document.createElement("div");
         const title = document.createElement("p")
         const author = document.createElement("p");
@@ -65,13 +64,35 @@ function displayBooks() {
 
         // Remove card from array
         deleteBtn.dataset.linkedArray = index;
-        index++;
+
         deleteBtn.addEventListener("click", removeCard);
         function removeCard() {
             let retrievedBook = deleteBtn.dataset.linkedArray;
             myLibrary.splice(parseInt(retrievedBook), 1);
             card.remove();
             displayBooks();
+        }
+
+        // Change status
+        readBtn.dataset.linkedArray = index;
+        readBtn.addEventListener("click", changeStatus);
+        function changeStatus() {
+            let retrievedStatus = readBtn.dataset.linkedArray;
+            if(myLibrary[parseInt(retrievedStatus)].status === true) {
+                myLibrary[parseInt(retrievedStatus)].status = !myLibrary[
+                    parseInt(retrievedStatus)].status;
+                readBtn.classList.remove("btn-green")
+                readBtn.classList.add("btn-red");
+                readBtn.textContent = "Not Read";
+                libraryInfo()
+            } else {
+                myLibrary[parseInt(retrievedStatus)].status = !myLibrary[
+                    parseInt(retrievedStatus)].status;
+                    readBtn.classList.remove("btn-red")
+                    readBtn.classList.add("btn-green");
+                    readBtn.textContent = "Read";
+                    libraryInfo()
+            }
         }
 
         title.textContent = `"${book.title}"`;
@@ -94,7 +115,7 @@ function displayBooks() {
         card.appendChild(btnContainer);
         btnContainer.appendChild(readBtn);
         btnContainer.appendChild(deleteBtn);
-    })
+    });
 }
 
 // Form Validation 
@@ -146,24 +167,8 @@ const clicks = () => {
         }
         else if(target.id === "delete") {
             deleteAll();
+            displayBooks()
         }
-        else if(target.classList.contains("btn-green")) {
-            target.classList.remove("btn-green");
-            target.classList.add("btn-red");
-            // myLibrary[tr].status = false;
-            myLibrary.forEach((item) => {
-                item.status = false;
-            });
-        }
-        else if(target.classList.contains("btn-red")) {
-            target.classList.remove("btn-red");
-            target.classList.add("btn-green");
-            // myLibrary[tr].status = true;
-            myLibrary.forEach(item => {
-                item.status = true;
-            })
-        }
-        displayBooks()
     });
 }
 clicks();
