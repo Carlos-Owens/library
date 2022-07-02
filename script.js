@@ -10,7 +10,7 @@ function Books(title, author, pages, status) {
 
 // Add constructor to library array   RETURN TO THIS FUNCTION!!!
 function addBookToLibrary(title, author, pages, status) {
-  if(title !== undefined && author !== undefined && pages !== undefined && status       !== undefined) {
+  if(title !== undefined && author !== undefined && pages !== undefined && status !== undefined) {
       let books = new Books(title, author, pages, status);
       myLibrary.push(books);
       displayBooks();
