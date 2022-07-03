@@ -15,6 +15,7 @@ function booksFactory(title, author, pages, status) {
 }
 
 function addBookToLibrary(title, author, pages, status) {
+<<<<<<< HEAD
     if(title === undefined && author === undefined && pages === undefined && status === undefined) {
       return;
     } 
@@ -23,6 +24,15 @@ function addBookToLibrary(title, author, pages, status) {
     
     // Removed displayBooks and added it to the clicks function!!!!!
   }
+=======
+  if(title !== undefined && author !== undefined && pages !== undefined && status !== undefined) {
+      let books = new Books(title, author, pages, status);
+      myLibrary.push(books);
+      displayBooks();
+  }
+   return;
+}
+>>>>>>> origin/main
 
 // Show library info
 function libraryInfo() {
