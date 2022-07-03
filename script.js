@@ -1,19 +1,28 @@
-let myLibrary = [];
+function myLibrary() {
+    this.library = []
+  }
 
-// Book constructor
-function Books(title, author, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
+  let libraryArray = new myLibrary();
+
+// Book factory
+function booksFactory(title, author, pages, status) {
+  return {
+    title,
+    author, 
+    pages, 
+    status
+  }
 }
 
-// Add constructor to library array   RETURN TO THIS FUNCTION!!!
 function addBookToLibrary(title, author, pages, status) {
-    let books = new Books(title, author, pages, status);
-    myLibrary.push(books);
-    displayBooks();
-}
+    if(title === undefined && author === undefined && pages === undefined && status === undefined) {
+      return;
+    } 
+        let books = booksFactory(title, author, pages, status);
+        libraryArray.library.push(books);
+    
+    // Removed displayBooks and added it to the clicks function!!!!!
+  }
 
 // Show library info
 function libraryInfo() {
@@ -25,7 +34,7 @@ function libraryInfo() {
     let unreadCount = 0;
     readInfo.textContent = 0;
     unreadInfo.textContent = 0;
-    myLibrary.forEach((info) => {
+    libraryArray.library.forEach((info) => {
         if(info.status === true) {
             readCount++;
             readInfo.textContent = readCount;
@@ -48,7 +57,7 @@ function displayBooks() {
         divs.remove();
     })
     
-    myLibrary.forEach((book, index) => {
+    libraryArray.library.forEach((book, index) => {
         const card = document.createElement("div");
         const title = document.createElement("p")
         const author = document.createElement("p");
@@ -68,7 +77,7 @@ function displayBooks() {
         deleteBtn.addEventListener("click", removeCard);
         function removeCard() {
             let retrievedBook = deleteBtn.dataset.linkedArray;
-            myLibrary.splice(parseInt(retrievedBook), 1);
+            libraryArray.library.splice(parseInt(retrievedBook), 1);
             card.remove();
             displayBooks();
         }
@@ -78,15 +87,15 @@ function displayBooks() {
         readBtn.addEventListener("click", changeStatus);
         function changeStatus() {
             let retrievedStatus = readBtn.dataset.linkedArray;
-            if(myLibrary[parseInt(retrievedStatus)].status === true) {
-                myLibrary[parseInt(retrievedStatus)].status = !myLibrary[
+            if(libraryArray.library[parseInt(retrievedStatus)].status === true) {
+                libraryArray.library[parseInt(retrievedStatus)].status = !libraryArray.library[
                     parseInt(retrievedStatus)].status;
                 readBtn.classList.remove("btn-green")
                 readBtn.classList.add("btn-red");
                 readBtn.textContent = "Not Read";
                 libraryInfo()
             } else {
-                myLibrary[parseInt(retrievedStatus)].status = !myLibrary[
+                libraryArray.library[parseInt(retrievedStatus)].status = !libraryArray.library[
                     parseInt(retrievedStatus)].status;
                     readBtn.classList.remove("btn-red")
                     readBtn.classList.add("btn-green");
@@ -155,15 +164,15 @@ const validateForm = (e) => {
 }
 
 function deleteAll() {
-    myLibrary = [];
+    libraryArray.library = [];
 }
 
 const clicks = () => {
     document.addEventListener("click", e => {
         const { target } = e;
-        // const tr = target.parentNode.parentNode.index;
         if(target.id === "add-book") {
             validateForm(e);
+            displayBooks();
         }
         else if(target.id === "delete") {
             deleteAll();
