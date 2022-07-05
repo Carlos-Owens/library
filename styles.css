@@ -81,12 +81,13 @@ header {
 }
 
 header > p {
+    position: relative;
+    top: 2%;
     font-size: 2.5rem;
-    display: flex;
     font-weight: bold;
 }
 
-header > p > img {
+header > img {
     height: 5vh;
 }
 
