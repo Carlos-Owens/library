@@ -20,8 +20,6 @@ function addBookToLibrary(title, author, pages, status) {
     } 
         let books = booksFactory(title, author, pages, status);
         libraryArray.library.push(books);
-    
-    // Removed displayBooks and added it to the clicks function!!!!!
   }
 
 // Show library info
@@ -43,7 +41,7 @@ function libraryInfo() {
             unreadInfo.textContent = unreadCount;
         }
     })
-    totalInfo.textContent = myLibrary.length;
+    totalInfo.textContent = libraryArray.library.length;
 }
 
 // Show book cards
